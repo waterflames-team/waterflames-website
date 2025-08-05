@@ -1,0 +1,67 @@
+---
+import { Image } from "astro:assets";
+import top_back_light from "../../assets/top_back_light.png";
+---
+
+<div class="container">
+    <div class="content">
+        我们是 WaterFlames，<br />在各个领域探索无限的可能性。
+    </div>
+    <Image
+        src={top_back_light}
+        alt=""
+        fetchpriority="high"
+        class="background-image"
+        draggable="false"
+    />
+</div>
+
+<style>
+    .container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .content {
+        position: absolute;
+        top: 400px;
+        left: 220px;
+        color: #fff;
+        font-family: ChillDINGothic, "Gill Sans", "Gill Sans MT", Calibri,
+            "Trebuchet MS", sans-serif;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        z-index: -1;
+    }
+
+    .background-image {
+        display: none;
+    }
+
+    @media (min-width: 950px) {
+        .background-image {
+            position: absolute;
+            top: -91.5px;
+            right: -127.5px;
+            width: 120%;
+            object-position: top;
+            z-index: 0;
+            display: block;
+        }
+    }
+
+    @media (min-width: 1920px) {
+        .background-image {
+            position: absolute;
+            top: -91.5px;
+            right: -127.5px;
+            width: auto;
+            object-position: top;
+            z-index: 0;
+            display: block;
+        }
+    }
+</style>
