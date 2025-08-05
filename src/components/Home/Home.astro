@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import top_back_light from "../../assets/top_back_light.png";
+import recent_products_light from "../../assets/recent_products_light.png";
 ---
 
 <div class="container">
@@ -11,16 +12,30 @@ import top_back_light from "../../assets/top_back_light.png";
         src={top_back_light}
         alt=""
         fetchpriority="high"
-        class="background-image"
+        class="top-back"
         draggable="false"
     />
+    <Image
+        src={recent_products_light}
+        alt=""
+        fetchpriority="high"
+        class="recent-back"
+        draggable="false"
+    />
+    <div class="icp">
+        © 2019-2024 WaterFlames.cn. All Rights
+        Reserved.｜状态监控｜闽ICP备2024035715号-1｜中国互联网违法和不良信息举报中心
+    </div>
 </div>
 
 <style>
     .container {
         position: relative;
         width: 100%;
-        height: 100%;
+        min-height: 100vh;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
     }
 
     .content {
@@ -37,31 +52,33 @@ import top_back_light from "../../assets/top_back_light.png";
         z-index: -1;
     }
 
-    .background-image {
-        display: none;
+    .top-back {
+        position: absolute;
+        top: -360px;
+        left: 0px;
+        object-position: top;
+        z-index: 0;
+        display: block;
+    }
+    .recent-back {
+        position: absolute;
+        top: 1000px;
+        left: -430px;
+        object-position: top;
+        z-index: 0;
+        display: block;
     }
 
-    @media (min-width: 950px) {
-        .background-image {
-            position: absolute;
-            top: -91.5px;
-            right: -127.5px;
-            width: 120%;
-            object-position: top;
-            z-index: 0;
-            display: block;
-        }
+    .icp {
+        margin-top: auto;
+        padding-bottom: 40px;
+        color: #fff;
+        text-align: center;
+        font-family: ChillDINGothic;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
     }
-
-    @media (min-width: 1920px) {
-        .background-image {
-            position: absolute;
-            top: -91.5px;
-            right: -127.5px;
-            width: auto;
-            object-position: top;
-            z-index: 0;
-            display: block;
-        }
-    }
+    
 </style>
