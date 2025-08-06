@@ -1,11 +1,12 @@
 ---
 import { Image } from "astro:assets";
 import top_back_light from "../../assets/top_back_light.png";
+import top_logo from "../../assets/top_logo.png";
 import recent_products_light from "../../assets/recent_products_light.png";
 ---
 
-<div class="container">
-    <div class="content">
+<div class="container-top">
+    <div class="top-content">
         我们是 WaterFlames，<br />在各个领域探索无限的可能性。
     </div>
     <Image
@@ -16,48 +17,68 @@ import recent_products_light from "../../assets/recent_products_light.png";
         draggable="false"
     />
     <Image
+        src={top_logo}
+        alt=""
+        fetchpriority="high"
+        class="top-logo"
+        draggable="false"
+    />
+</div>
+<div class="container-recent">
+    <!-- <Image
         src={recent_products_light}
         alt=""
         fetchpriority="high"
         class="recent-back"
         draggable="false"
-    />
-    <div class="icp">
+    /> -->
+</div>
+<div class="container-works"></div>
+<div class="container-footer">
+    <!-- <div class="icp">
         © 2019-2024 WaterFlames.cn. All Rights
         Reserved.｜状态监控｜闽ICP备2024035715号-1｜中国互联网违法和不良信息举报中心
-    </div>
+    </div> -->
 </div>
 
 <style>
-    .container {
+    .container-top {
         position: relative;
         width: 100%;
-        min-height: 100vh;
+        height: 900px;
         overflow-x: hidden;
         display: flex;
         flex-direction: column;
     }
 
-    .content {
+    .top-content {
         position: absolute;
-        top: 400px;
-        left: 220px;
+        top: 600px;
+        right: 180px;
         color: #fff;
         font-family: ChillDINGothic, "Gill Sans", "Gill Sans MT", Calibri,
             "Trebuchet MS", sans-serif;
+        text-align: right;
         font-size: 48px;
         font-style: normal;
         font-weight: 700;
         line-height: normal;
-        z-index: -1;
     }
 
+    .top-logo {
+        position: absolute;
+        width: 203px;
+        height: 52.927px;
+        top: 100px;
+        left: 120px;
+        display: block;
+    }
     .top-back {
         position: absolute;
-        top: -360px;
-        left: 0px;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
         object-position: top;
-        z-index: 0;
         display: block;
     }
     .recent-back {
@@ -80,5 +101,4 @@ import recent_products_light from "../../assets/recent_products_light.png";
         font-weight: 400;
         line-height: normal;
     }
-    
 </style>
