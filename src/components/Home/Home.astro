@@ -1,8 +1,10 @@
 ---
 import { Image } from "astro:assets";
 import top_back_light from "../../assets/top_back_light.png";
-import top_logo from "../../assets/top_logo.png";
+import top_logo from "../../assets/top_logo.svg";
 import recent_products_light from "../../assets/recent_products_light.png";
+import recent_preview from "../../assets/cxpreview.png";
+import astrobox_logo from "../../assets/ab.svg";
 ---
 
 <div class="container-top">
@@ -25,13 +27,43 @@ import recent_products_light from "../../assets/recent_products_light.png";
     />
 </div>
 <div class="container-recent">
-    <!-- <Image
+    <div class="recent-content" style="z-index: 1;">
+        <div class="recent-content-title">最近作品</div>
+        <div class="recent-content-textbox">
+            <h1 class="recent-content-textbox-title">澄序课程表</h1>
+            <h2 class="recent-content-textbox-subtitle">课程腕上抬手看</h2>
+            <div class="recent-content-textbox-descbox">
+                <p class="recent-content-textbox-descbox-text">由</p>
+                <Image
+                    src={astrobox_logo}
+                    alt=""
+                    class="recent-content-textbox-descbox-logo"
+                    draggable="false"
+                />
+                <p class="recent-content-textbox-descbox-text">
+                    驱动数据传输服务
+                </p>
+            </div>
+            <a class="recent-content-textbox-link" href="#">> 查看详情</a>
+        </div>
+    </div>
+
+    <div class="recent-content">
+        <Image
+            src={recent_preview}
+            alt=""
+            class="recent-preview"
+            draggable="false"
+        />
+    </div>
+
+    <Image
         src={recent_products_light}
         alt=""
         fetchpriority="high"
         class="recent-back"
         draggable="false"
-    /> -->
+    />
 </div>
 <div class="container-works"></div>
 <div class="container-footer">
@@ -42,6 +74,7 @@ import recent_products_light from "../../assets/recent_products_light.png";
 </div>
 
 <style>
+    /* Top 部分 */
     .container-top {
         position: relative;
         width: 100%;
@@ -56,8 +89,8 @@ import recent_products_light from "../../assets/recent_products_light.png";
         top: 600px;
         right: 180px;
         color: #fff;
-        font-family: ChillDINGothic, "Gill Sans", "Gill Sans MT", Calibri,
-            "Trebuchet MS", sans-serif;
+        font-family: ChillDINGothic, MiSans, "PingFang SC", "Source Han Sans CN",
+            "Source Han Sans", sans-serif;
         text-align: right;
         font-size: 48px;
         font-style: normal;
@@ -81,12 +114,161 @@ import recent_products_light from "../../assets/recent_products_light.png";
         object-position: top;
         display: block;
     }
+
+    /* 最近作品部分 */
+
+    .container-recent {
+        position: relative;
+        width: 100%;
+        height: 900px;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .recent-content {
+        position: absolute;
+        width: 1186px;
+        height: 612px;
+    }
+
+    .recent-content-title {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+
+        color: #fff;
+        text-align: center;
+        font-family: ChillDINGothic;
+        font-size: 64px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+
+        user-select: none;
+    }
+
+    .recent-content-textbox {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+
+        width: 478px;
+        height: 414px;
+        flex-shrink: 0;
+    }
+
+    .recent-content-textbox-title {
+        position: absolute;
+        bottom: 288px;
+        right: 0;
+
+        font-family: MiSans;
+        font-size: 95.305px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+
+        background: linear-gradient(
+            90deg,
+            #fff 0%,
+            rgba(255, 255, 255, 0.7) 100%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        user-select: none;
+    }
+
+    .recent-content-textbox-subtitle {
+        position: absolute;
+        bottom: 280px;
+        right: 0;
+
+        font-family: MiSans;
+        font-size: 35.739px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+
+        background: linear-gradient(
+            90deg,
+            #fff 0%,
+            rgba(255, 255, 255, 0.7) 100%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        user-select: none;
+    }
+
+    .recent-content-textbox-descbox {
+        position: absolute;
+        bottom: 195px;
+        right: 0;
+
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        flex-shrink: 0;
+    }
+
+    .recent-content-textbox-descbox-text {
+        color: #fff;
+        text-align: right;
+        font-family: MiSans;
+        font-size: 26.805px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+    }
+
+    .recent-content-textbox-descbox-logo{
+        align-self: center;
+    }
+
+    .recent-content-textbox-link {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+
+        text-align: right;
+        font-family: MiSans, "PingFang SC", "Source Han Sans CN",
+            "Source Han Sans", sans-serif;
+        font-size: 26.805px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+
+        background: linear-gradient(
+            90deg,
+            #fff 0%,
+            rgba(255, 255, 255, 0.7) 100%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        user-select: none;
+    }
+
+    .recent-preview {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
     .recent-back {
         position: absolute;
-        top: 1000px;
-        left: -430px;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
         object-position: top;
-        z-index: 0;
         display: block;
     }
 
