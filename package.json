@@ -11,5 +11,8 @@
   "dependencies": {
     "@astrojs/vercel": "^8.2.5",
     "astro": "^5.12.8"
+  },
+  "devDependencies": {
+    "rollup": "^3.29.4"
   }
 }
