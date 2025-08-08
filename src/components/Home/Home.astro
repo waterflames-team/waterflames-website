@@ -176,6 +176,7 @@ import gogogo from "../../assets/go.svg";
 </div>
 
 <style>
+    /* 基本元素样式定义 */
     a {
         text-decoration: none;
         color: #fff;
@@ -213,6 +214,24 @@ import gogogo from "../../assets/go.svg";
         font-style: normal;
         font-weight: 700;
         line-height: normal;
+        
+        /* 添加动画效果 */
+        animation: textFadeUpIn 1s cubic-bezier(0,.45,1,1) forwards;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0, 0.45, 1, 1);
+        animation-delay: 0s;
+        animation-iteration-count: 1;
+        animation-direction: normal;
+        animation-fill-mode: forwards;
+        animation-play-state: running;
+        animation-name: textFadeUpIn;
+        animation-timeline: auto;
+        animation-range-start: normal;
+        animation-range-end: normal;
+        
+        /* 初始状态，配合动画使用 */
+        opacity: 0;
+        transform: translateY(50px);
     }
     .top-nav {
         position: absolute;
@@ -222,6 +241,9 @@ import gogogo from "../../assets/go.svg";
         display: inline-flex;
         align-items: center;
         gap: 60px;
+
+        opacity: 0;
+        animation: fadeIn 1s ease-in-out 0.1s forwards;
     }
     .top-nav a {
         color: #fff;
@@ -244,6 +266,8 @@ import gogogo from "../../assets/go.svg";
         transform: translateX(-50%);
         object-position: top;
         display: block;
+        opacity: 0;
+        animation: fadeIn 1s ease-in-out 0.1s forwards;
     }
 
     /* 最近作品部分 */
@@ -263,6 +287,28 @@ import gogogo from "../../assets/go.svg";
         position: absolute;
         width: 1186px;
         height: 612px;
+
+        /* 初始状态，配合动画使用 */
+        opacity: 0;
+        transform: translateX(-50%) translateY(50px);
+    }
+    .recent-content.visible {
+        /* 添加动画效果 */
+        animation: textFadeUpIn 1s cubic-bezier(0,.45,1,1) forwards;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0, 0.45, 1, 1);
+        animation-delay: 0s;
+        animation-iteration-count: 1;
+        animation-direction: normal;
+        animation-fill-mode: forwards;
+        animation-play-state: running;
+        animation-name: textFadeUpIn;
+        animation-timeline: auto;
+        animation-range-start: normal;
+        animation-range-end: normal;
+        
+        opacity: 1;
+        /* transform: translateX(-50%) translateY(0); */
     }
 
     .recent-content-title {
@@ -404,6 +450,12 @@ import gogogo from "../../assets/go.svg";
         transform: translateX(-50%);
         object-position: top;
         display: block;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .recent-back.visible {
+        opacity: 1;
     }
 
     /* 作品总览部分 */
@@ -416,6 +468,28 @@ import gogogo from "../../assets/go.svg";
         align-items: center;
         gap: 60px;
         margin: 0 auto;
+
+        /* 初始状态，配合动画使用 */
+        opacity: 0;
+        transform: translateX(-50%) translateY(50px);
+    }
+
+    .container-works.visible {
+        /* 添加动画效果 */
+        animation: textFadeUpIn 1s cubic-bezier(0,.45,1,1) forwards;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0, 0.45, 1, 1);
+        animation-delay: 0s;
+        animation-iteration-count: 1;
+        animation-direction: normal;
+        animation-fill-mode: forwards;
+        animation-play-state: running;
+        animation-name: textFadeUpIn;
+        animation-timeline: auto;
+        animation-range-start: normal;
+        animation-range-end: normal;
+        
+        opacity: 1;
     }
 
     .works-title {
@@ -544,6 +618,28 @@ import gogogo from "../../assets/go.svg";
         flex-direction: column;
         align-items: center;
         gap: 120px;
+
+        /* 初始状态，配合动画使用 */
+        opacity: 0;
+        transform: translateX(-50%) translateY(50px);
+    }
+
+    .container-footer.visible {
+        /* 添加动画效果 */
+        animation: textFadeUpIn 1s cubic-bezier(0,.45,1,1) forwards;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0, 0.45, 1, 1);
+        animation-delay: 0s;
+        animation-iteration-count: 1;
+        animation-direction: normal;
+        animation-fill-mode: forwards;
+        animation-play-state: running;
+        animation-name: textFadeUpIn;
+        animation-timeline: auto;
+        animation-range-start: normal;
+        animation-range-end: normal;
+        
+        opacity: 1;
     }
 
     .footer-text {
@@ -573,6 +669,9 @@ import gogogo from "../../assets/go.svg";
 
     /* 手机适配 */
     @media (max-width: 750px) {
+        .container-top {
+            top: -50px;
+        }
         .top-content {
             position: absolute;
             top: 600px;
@@ -599,4 +698,46 @@ import gogogo from "../../assets/go.svg";
             width: calc(180px + (203 - 180) * ((100vw - 300px) / (750 - 300)));
         }
     }
+
+    /* 增加动画行为 */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    @keyframes textFadeUpIn {
+        0% {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 </style>
+
+<script>
+    // 创建 Intersection Observer 实例
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // 当元素进入视口时，添加 visible 类
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.2 // 当元素10%可见时触发
+    });
+
+    // 获取所有需要观察的元素
+    const elements = document.querySelectorAll('.recent-back, .recent-content, .container-works, .container-footer');
+    
+    // 开始观察每个元素
+    elements.forEach(element => {
+        observer.observe(element);
+    });
+</script>
