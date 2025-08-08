@@ -697,6 +697,19 @@ import gogogo from "../../assets/go.svg";
         .top-logo {
             width: calc(180px + (203 - 180) * ((100vw - 300px) / (750 - 300)));
         }
+        
+        /* 移动端动画优化 */
+        .recent-content,
+        .container-works,
+        .container-footer {
+            /* 减少移动端动画时间以提高性能 */
+            animation-duration: 0.6s !important;
+        }
+        
+        .recent-back {
+            /* 移动端背景图渐显优化 */
+            transition: opacity 0.6s ease-in-out;
+        }
     }
 
     /* 增加动画行为 */
@@ -721,6 +734,9 @@ import gogogo from "../../assets/go.svg";
 </style>
 
 <script>
+    // 检查是否为移动端设备
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
     // 创建 Intersection Observer 实例
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -730,14 +746,48 @@ import gogogo from "../../assets/go.svg";
             }
         });
     }, {
-        threshold: 0.2 // 当元素10%可见时触发
+        threshold: isMobile ? 0.1 : 0.2 // 移动端10%可见时触发，桌面端20%可见时触发
     });
 
     // 获取所有需要观察的元素
     const elements = document.querySelectorAll('.recent-back, .recent-content, .container-works, .container-footer');
     
-    // 开始观察每个元素
-    elements.forEach(element => {
-        observer.observe(element);
-    });
+    // 处理 Intersection Observer
+    const handleIntersectionObserver = () => {
+        if ('IntersectionObserver' in window) {
+            // 支持 Intersection Observer API
+            try {
+                elements.forEach(element => {
+                    observer.observe(element);
+                });
+            } catch (error) {
+                console.warn('IntersectionObserver 观察元素时出错:', error);
+                // 出错时直接显示所有元素
+                elements.forEach(element => {
+                    element.classList.add('visible');
+                });
+            }
+        } else {
+            // 不支持 Intersection Observer API，直接显示所有元素
+            elements.forEach(element => {
+                element.classList.add('visible');
+            });
+        }
+    };
+
+    // 页面加载完成后初始化
+    if (document.readyState === 'loading') {
+        // 文档仍在加载中
+        document.addEventListener('DOMContentLoaded', handleIntersectionObserver);
+    } else {
+        // 文档已经加载完成
+        handleIntersectionObserver();
+    }
+
+    // 调试信息
+    if (isMobile) {
+        console.log('移动端设备检测:', navigator.userAgent);
+        // 注意：observer.threshold 是只读属性，不能直接访问
+        console.log('IntersectionObserver 阈值设置为:', isMobile ? 0.1 : 0.2);
+    }
 </script>
