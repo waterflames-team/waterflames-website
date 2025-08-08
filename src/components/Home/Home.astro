@@ -13,9 +13,9 @@ import gogogo from "../../assets/go.svg";
 ---
 
 <div class="container-top">
-    <div class="top-content">
+    <h1 class="top-content">
         我们是 WaterFlames，<br />在各个领域探索无限的可能性。
-    </div>
+    </h1>
     <Image
         src={top_back_light}
         alt=""
@@ -23,20 +23,23 @@ import gogogo from "../../assets/go.svg";
         class="top-back"
         draggable="false"
     />
-    <Image
-        src={top_logo}
-        alt=""
-        fetchpriority="high"
-        class="top-logo"
-        draggable="false"
-    />
+    <div class="top-nav">
+        <Image
+            src={top_logo}
+            alt=""
+            fetchpriority="high"
+            class="top-logo"
+            draggable="false"
+        />
+        <a href="https://docs.waterflames.cn/" target="_blank">/ 文档</a>
+    </div>
 </div>
 <div class="container-recent">
     <div class="recent-content" style="z-index: 1;">
         <div class="recent-content-title">最近作品</div>
         <div class="recent-content-textbox">
-            <h1 class="recent-content-textbox-title">澄序课程表</h1>
-            <h2 class="recent-content-textbox-subtitle">课程腕上抬手看</h2>
+            <h3 class="recent-content-textbox-title">澄序课程表</h3>
+            <h4 class="recent-content-textbox-subtitle">课程腕上抬手看</h4>
             <div class="recent-content-textbox-descbox">
                 <p class="recent-content-textbox-descbox-text">由</p>
                 <Image
@@ -75,7 +78,7 @@ import gogogo from "../../assets/go.svg";
     />
 </div>
 <div class="container-works">
-    <h1 class="works-title">Works.</h1>
+    <div class="works-title">Works.</div>
     <div class="works-content">
         <div class="works-content-line">
             <a
@@ -173,6 +176,21 @@ import gogogo from "../../assets/go.svg";
 </div>
 
 <style>
+    a {
+        text-decoration: none;
+        color: #fff;
+        outline: none;
+        font-weight: 700;
+    }
+    div,
+    a,
+    p,
+    h1,
+    h2,
+    h3,
+    h4 {
+        user-select: none;
+    }
     /* Top 部分 */
     .container-top {
         position: relative;
@@ -196,14 +214,28 @@ import gogogo from "../../assets/go.svg";
         font-weight: 700;
         line-height: normal;
     }
-
-    .top-logo {
+    .top-nav {
         position: absolute;
-        width: 203px;
-        height: 52.927px;
         top: 100px;
         left: 120px;
-        display: block;
+
+        display: inline-flex;
+        align-items: center;
+        gap: 60px;
+    }
+    .top-nav a {
+        color: #fff;
+        font-family: ChillDINGothic;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    .top-logo {
+        width: 203px;
+        height: auto;
+        /* height: 52.927px; */
     }
     .top-back {
         position: absolute;
@@ -264,6 +296,7 @@ import gogogo from "../../assets/go.svg";
         position: absolute;
         bottom: 288px;
         right: 0;
+        margin: 0 auto;
 
         font-family: MiSans;
         font-size: 95.305px;
@@ -285,8 +318,9 @@ import gogogo from "../../assets/go.svg";
 
     .recent-content-textbox-subtitle {
         position: absolute;
-        bottom: 280px;
+        bottom: 250px;
         right: 0;
+        margin: 0 auto;
 
         font-family: MiSans;
         font-size: 35.739px;
@@ -310,6 +344,7 @@ import gogogo from "../../assets/go.svg";
         position: absolute;
         bottom: 195px;
         right: 0;
+        margin: 0 auto;
 
         display: flex;
         flex-direction: row;
@@ -318,6 +353,7 @@ import gogogo from "../../assets/go.svg";
     }
 
     .recent-content-textbox-descbox-text {
+        margin: 0 auto;
         color: #fff;
         text-align: right;
         font-family: MiSans;
@@ -335,13 +371,14 @@ import gogogo from "../../assets/go.svg";
         position: absolute;
         bottom: 0;
         right: 0;
+        margin: 0 auto;
 
         text-align: right;
         font-family: MiSans, "PingFang SC", "Source Han Sans CN",
             "Source Han Sans", sans-serif;
         font-size: 26.805px;
         font-style: normal;
-        font-weight: 300;
+        font-weight: 700;
         line-height: normal;
 
         background: linear-gradient(
@@ -352,8 +389,6 @@ import gogogo from "../../assets/go.svg";
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-
-        user-select: none;
     }
 
     .recent-preview {
@@ -521,9 +556,47 @@ import gogogo from "../../assets/go.svg";
         line-height: normal;
     }
 
-    a {
-        text-decoration: none;
-        color: #fff;
-        outline: none;
+    /* 小屏电脑适配 */
+    @media (min-width: 1000px) and (max-width: 1920px) {
+    }
+
+    /* 平板适配 */
+    @media (min-width: 750px) and (max-width: 1000px) {
+        .top-content {
+            position: absolute;
+            top: 600px;
+            left: 120px;
+            right: auto;
+            text-align: left;
+        }
+    }
+
+    /* 手机适配 */
+    @media (max-width: 750px) {
+        .top-content {
+            position: absolute;
+            top: 600px;
+            left: 50px;
+            right: 0;
+            text-align: left;
+            font-size: calc(20px + (48 - 20) * ((100vw - 300px) / (750 - 300)));
+            /* font-size: calc(最小字体大小 + (字体变化范围) * ((当前视口宽度 - 最小宽度) / (宽度变化范围))); */
+            font-weight: 700;
+        }
+        .top-nav {
+            left: 50px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .top-nav a {
+            font-size: calc(20px + (32 - 20) * ((100vw - 300px) / (750 - 300)));
+        }
+
+        .top-logo {
+            width: calc(180px + (203 - 180) * ((100vw - 300px) / (750 - 300)));
+        }
     }
 </style>
